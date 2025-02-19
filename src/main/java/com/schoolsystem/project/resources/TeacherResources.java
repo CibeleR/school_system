@@ -1,8 +1,7 @@
 package com.schoolsystem.project.resources;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.schoolsystem.project.domain.Teacher;
+import com.schoolsystem.project.dto.TeacherDTO;
 import com.schoolsystem.project.services.TeacherService;
 
 @RestController
@@ -21,8 +21,9 @@ public class TeacherResources {
 	private TeacherService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Teacher>> findAll(){
+	public ResponseEntity<List<TeacherDTO>> findAll(){
 		List<Teacher> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+		List<TeacherDTO> listDto = list.stream().map(x -> new TeacherDTO(x)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 }

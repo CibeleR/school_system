@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.schoolsystem.project.domain.SchoolClass;
+import com.schoolsystem.project.domain.Student;
 import com.schoolsystem.project.domain.Teacher;
 import com.schoolsystem.project.dto.TeacherDTO;
 import com.schoolsystem.project.services.TeacherService;
@@ -59,5 +61,11 @@ public class TeacherResources {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping(value = "/{id}/schoolclasses")
+	public ResponseEntity<List<SchoolClass>> findStudents(@PathVariable String id){
+		Teacher teacher = service.findById(id);
+		return ResponseEntity.ok().body(teacher.getSchoolClass());
 	}
 }

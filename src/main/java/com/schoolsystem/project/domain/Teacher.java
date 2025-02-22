@@ -1,10 +1,14 @@
 package com.schoolsystem.project.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Document(collection="teacher")
 public class Teacher implements Serializable {
@@ -15,6 +19,9 @@ public class Teacher implements Serializable {
 	private String nome;
 	private String email;
 	private String matéria;
+	
+	@JsonIgnore
+	private List<SchoolClass> schoolClass = new ArrayList<>();
 	
 	public Teacher () {
 	}
@@ -56,6 +63,14 @@ public class Teacher implements Serializable {
 
 	public void setMatéria(String matéria) {
 		this.matéria = matéria;
+	}
+
+	public List<SchoolClass> getSchoolClass() {
+		return schoolClass;
+	}
+
+	public void setSchoolClass(List<SchoolClass> schoolClass) {
+		this.schoolClass = schoolClass;
 	}
 
 	@Override

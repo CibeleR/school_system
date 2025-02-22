@@ -1,7 +1,10 @@
 package com.schoolsystem.project.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.schoolsystem.project.domain.SchoolClass;
 import com.schoolsystem.project.domain.Teacher;
 
 public class TeacherDTO implements Serializable{
@@ -10,6 +13,8 @@ public class TeacherDTO implements Serializable{
 	private String id;
 	private String nome;
 	private String matéria;
+	
+	private List<SchoolClass> schoolClass = new ArrayList<>();
 	
 	public TeacherDTO() {
 	}
@@ -42,5 +47,13 @@ public class TeacherDTO implements Serializable{
 
 	public void setMatéria(String matéria) {
 		this.matéria = matéria;
+	}
+
+	public List<SchoolClass> getSchoolClass() {
+		return schoolClass;
+	}
+
+	public void setSchoolClass(List<SchoolClass> schoolClass) {
+		this.schoolClass = schoolClass;
 	}
 }

@@ -42,5 +42,6 @@ public class StudentService {
 	private void updateData(Student newObj, Student obj) {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
+		newObj.setSchoolClass(obj.getSchoolClass());
 	}
 }

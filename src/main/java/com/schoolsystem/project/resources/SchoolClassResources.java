@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.schoolsystem.project.domain.SchoolClass;
+import com.schoolsystem.project.domain.Student;
 import com.schoolsystem.project.dto.SchoolClassDTO;
 import com.schoolsystem.project.services.SchoolClassService;
 
@@ -59,5 +60,11 @@ public class SchoolClassResources {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping(value = "/{id}/students")
+	public ResponseEntity<List<Student>> findStudents(@PathVariable String id){
+		SchoolClass sc = service.findById(id);
+		return ResponseEntity.ok().body(sc.getStudents());
 	}
 }

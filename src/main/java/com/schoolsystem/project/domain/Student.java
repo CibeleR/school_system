@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="student")
@@ -14,14 +15,18 @@ public class Student implements Serializable {
 	private String id;
 	private String nome;
 	private String email;
+	
+	@DBRef
+	private SchoolClass schoolClass;
 
 	public Student () {
 	}
 
-	public Student(String id, String nome, String email) {
+	public Student(String id, String nome, String email, SchoolClass schoolClass) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
+		this.schoolClass = schoolClass;
 	}
 
 	public String getId() {
@@ -46,6 +51,14 @@ public class Student implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public SchoolClass getSchoolClass() {
+		return schoolClass;
+	}
+
+	public void setSchoolClass(SchoolClass schoolClass) {
+		this.schoolClass = schoolClass;
 	}
 
 	@Override
